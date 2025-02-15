@@ -94,14 +94,13 @@ h2 {
 .accordion-button::after {
     filter: brightness(0) invert(1);
 }
-/* Minimally dim for cut-off time if not replaced in script */
 .cutoff-time {
     font-size: 1.125rem;
-    color: #aaaaaa;
+    color: #aaaaaa; /* Minimally dim by default */
 }
 
 /* ===========================
-   NEW: TRACK BUTTONS SQUARE
+   TRACK BUTTONS (FUTURISTIC)
    =========================== */
 .track-button-container {
     display: inline-block;
@@ -112,11 +111,27 @@ h2 {
     position: relative;
 }
 
+/* Ocultamos el checkbox real */
 .track-button-container input[type="checkbox"] {
     display: none;
 }
 
+/* Keyframes para el pulso neón */
+@keyframes neonPulse {
+    0% {
+        box-shadow: 0 0 10px var(--color-neon-cian), 0 0 20px var(--color-neon-cian) inset;
+    }
+    50% {
+        box-shadow: 0 0 20px var(--color-neon-cian), 0 0 30px var(--color-neon-cian) inset;
+    }
+    100% {
+        box-shadow: 0 0 10px var(--color-neon-cian), 0 0 20px var(--color-neon-cian) inset;
+    }
+}
+
+/* Botón con pulso + ripple */
 .track-button {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -127,27 +142,54 @@ h2 {
     border-radius: 10px;
     cursor: pointer;
     user-select: none;
-    transition: all 0.3s ease;
     background-color: #1e1e1e;
     color: #ffffff;
     text-align: center;
     padding: 0.5rem;
+    overflow: hidden; /* Para que el ripple no se salga */
+    /* Pulso continuo + transición */
+    animation: neonPulse 2s infinite;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Efecto "ripple": pseudo-elemento */
+.track-button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: width 0.4s, height 0.4s;
+}
+
+/* Hover: agrandar un poco */
 .track-button:hover {
-    background-color: #2a2a2a;
+    transform: scale(1.05);
 }
 
+/* Active: hundir + disparar ripple */
+.track-button:active {
+    transform: scale(0.95);
+}
+.track-button:active::before {
+    width: 250px; /* Ajustar al tamaño del botón */
+    height: 250px;
+}
+
+/* Estado CHECKED: color verde c/ su glow */
 .track-button-container input[type="checkbox"]:checked + .track-button {
-    background-color: #00ff9b;
+    background-color: #00ff9b; /* un verde neón */
     color: #000000;
+    box-shadow: 0 0 10px #00ff9b, 0 0 20px #00ff9b inset;
+    animation: none; /* O puedes darle otra animación si lo deseas */
 }
 
-.track-button-container input[type="checkbox"]:disabled + .track-button {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
+/* Ajustes de tamaño del texto interno */
 .track-button .track-name {
     font-weight: 700;
     font-size: 1.3rem;
@@ -158,6 +200,7 @@ h2 {
     color: #cccccc;
 }
 
+/* Versión reducida en pantallas pequeñas */
 @media (max-width: 576px) {
     .track-button-container {
         width: 120px;
@@ -182,7 +225,6 @@ h2 {
 .table-bordered td {
     border: 1px solid var(--color-neon-cian);
 }
-
 .table-dark th {
     background-color: #1e1e1e;
     color: var(--color-neon-cian);
@@ -307,7 +349,6 @@ input:-ms-input-placeholder {
 input::-ms-input-placeholder {
     color: var(--color-placeholder);
 }
-
 @media (max-width: 768px) {
     .container {
         padding: 10px;
@@ -414,12 +455,10 @@ input::-ms-input-placeholder {
     background-color: var(--color-neon-morado) !important;
     border: 2px solid var(--color-neon-cian) !important;
 }
-/* Hide cutoff time for Venezuela track */
 .cutoff-time[data-track='Venezuela'] {
     color: var(--color-fondo);
 }
 
-/* For smaller screens */
 @media (max-width: 600px) {
     #preTicket table,
     #preTicket th,
@@ -440,8 +479,6 @@ input::-ms-input-placeholder {
         font-size: 0.8rem;
     }
 }
-
-/* Force wide "desktop" look on small screens: optional approach */
 @media (max-width: 768px) {
     #preTicket {
         width: 1200px !important;
