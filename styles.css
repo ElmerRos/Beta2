@@ -1,0 +1,469 @@
+ /* ===========================
+   BASE COLORS & FONTS
+   =========================== */
+:root {
+    --color-fondo: #0a0a0a; /* Dark background */
+    --color-neon-cian: #00ffff;
+    --color-neon-morado: #ff00ff;
+    --color-neon-verde: #39ff14;
+    --color-texto: #ffffff;
+    --color-placeholder: #cccccc;
+    --color-fondo-acordeon: #1e1e1e;
+    --color-fondo-acordeon-activo: #00ffff;
+    --color-texto-acordeon: #ffffff;
+    --color-error: #ff00ff;
+}
+
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: 'Montserrat', 'Poppins', sans-serif;
+    margin: 0;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* ===========================
+   CONTAINER
+   =========================== */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(10, 10, 10, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--color-neon-cian);
+    text-shadow: 0 0 10px var(--color-neon-cian);
+    font-size: 1.125rem; /* ~18px */
+}
+
+/* ===========================
+   FLATPICKR INPUT
+   =========================== */
+.glow-input {
+    box-shadow: 0 0 10px var(--color-neon-cian);
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+.glow-input:focus {
+    border-color: var(--color-neon-morado);
+    box-shadow: 0 0 15px var(--color-neon-morado);
+    outline: none;
+}
+
+/* ===========================
+   ACCORDION & TRACKS
+   =========================== */
+.form-check-label {
+    color: var(--color-texto);
+    font-size: 1.125rem;
+}
+/* Accordion headers */
+.accordion-button {
+    background-color: var(--color-fondo-acordeon);
+    color: var(--color-texto-acordeon);
+    border: 2px solid var(--color-neon-cian);
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 1.125rem;
+}
+.accordion-button:not(.collapsed) {
+    background-color: var(--color-fondo-acordeon-activo);
+    color: #000;
+}
+.accordion-button:hover {
+    background-color: #2a2a2a;
+    color: var(--color-neon-cian);
+}
+.accordion-body {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid var(--color-neon-cian);
+}
+.accordion-header {
+    background-color: var(--color-fondo-acordeon);
+}
+.accordion-item {
+    background-color: var(--color-fondo-acordeon);
+    border: none;
+}
+.accordion-button::after {
+    filter: brightness(0) invert(1);
+}
+/* Minimally dim for cut-off time if not replaced in script */
+.cutoff-time {
+    font-size: 1.125rem;
+    color: #aaaaaa;
+}
+
+/* ===========================
+   NEW: TRACK BUTTONS SQUARE
+   =========================== */
+.track-button-container {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin: 0.5rem;
+    vertical-align: top;
+    position: relative;
+}
+
+.track-button-container input[type="checkbox"] {
+    display: none;
+}
+
+.track-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--color-neon-cian);
+    border-radius: 10px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.track-button:hover {
+    background-color: #2a2a2a;
+}
+
+.track-button-container input[type="checkbox"]:checked + .track-button {
+    background-color: #00ff9b;
+    color: #000000;
+}
+
+.track-button-container input[type="checkbox"]:disabled + .track-button {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.track-button .track-name {
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 0.4rem;
+}
+.track-button .cutoff-time {
+    font-size: 1.1rem;
+    color: #cccccc;
+}
+
+@media (max-width: 576px) {
+    .track-button-container {
+        width: 120px;
+        height: 120px;
+        margin: 0.25rem;
+    }
+    .track-button .track-name {
+        font-size: 1.1rem;
+    }
+    .track-button .cutoff-time {
+        font-size: 1rem;
+    }
+}
+
+/* ===========================
+   TABLE OF PLAYS
+   =========================== */
+.table-dark {
+    box-shadow: 0 0 10px var(--color-neon-cian);
+}
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid var(--color-neon-cian);
+}
+
+.table-dark th {
+    background-color: #1e1e1e;
+    color: var(--color-neon-cian);
+    text-shadow: 0 0 5px var(--color-neon-cian);
+    font-size: 1.125rem;
+}
+.table-dark td {
+    font-size: 1.125rem;
+}
+
+/* ===========================
+   BUTTONS
+   =========================== */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.125rem;
+}
+.btn-primary {
+    background-color: var(--color-neon-cian);
+    color: #000;
+    box-shadow: 0 0 10px var(--color-neon-cian);
+}
+.btn-primary:hover {
+    background-color: #00cccc;
+    box-shadow: 0 0 20px var(--color-neon-cian);
+    transform: scale(1.05);
+}
+.btn-danger {
+    background-color: #ff0044;
+    color: #fff;
+    box-shadow: 0 0 10px #ff0044;
+    min-width: 150px;
+}
+.btn-danger:hover {
+    background-color: #cc0033;
+    box-shadow: 0 0 20px #ff0044;
+    transform: scale(1.05);
+}
+.btn-warning {
+    color: #000;
+    background-color: #ffcb00;
+    box-shadow: 0 0 10px #ffcb00;
+}
+.btn-warning:hover {
+    background-color: #e0b300;
+    box-shadow: 0 0 20px #ffcb00;
+    transform: scale(1.05);
+}
+.btn-success {
+    background-color: var(--color-neon-verde);
+    color: #000;
+    box-shadow: 0 0 10px var(--color-neon-verde), 0 0 20px var(--color-neon-verde);
+    animation: pulse 2s infinite;
+}
+.btn-success:hover {
+    transform: scale(1.02);
+}
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 10px var(--color-neon-verde), 0 0 20px var(--color-neon-verde);
+    }
+    50% {
+        box-shadow: 0 0 20px var(--color-neon-verde), 0 0 30px var(--color-neon-verde);
+    }
+    100% {
+        box-shadow: 0 0 10px var(--color-neon-verde), 0 0 20px var(--color-neon-verde);
+    }
+}
+
+/* Button Groups */
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+.button-group .btn {
+    flex: 1;
+}
+
+/* ===========================
+   MODAL
+   =========================== */
+.modal-content {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    box-shadow: 0 0 20px var(--color-neon-cian);
+    max-height: 90vh;
+    overflow: auto;
+    resize: both;
+    border: 2px solid var(--color-neon-cian);
+}
+.modal-header,
+.modal-footer {
+    border-bottom: 1px solid var(--color-neon-cian);
+    border-top: 1px solid var(--color-neon-cian);
+}
+.modal-title {
+    color: var(--color-neon-cian);
+}
+.btn-close-white {
+    filter: brightness(0) invert(1);
+}
+#qrcode {
+    margin: 0 auto;
+    width: 128px;
+    height: 128px;
+}
+
+/* ===========================
+   PLACEHOLDER & RESPONSIVE
+   =========================== */
+input::placeholder {
+    color: var(--color-placeholder);
+    opacity: 1;
+}
+input:-ms-input-placeholder {
+    color: var(--color-placeholder);
+}
+input::-ms-input-placeholder {
+    color: var(--color-placeholder);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    h2 {
+        font-size: 1.5em;
+    }
+    .btn {
+        padding: 8px 16px;
+        font-size: 1.125rem;
+    }
+    .table-responsive {
+        overflow-x: auto;
+    }
+    .accordion-button {
+        font-size: 1.125rem;
+    }
+    .cutoff-time {
+        font-size: 1.125rem;
+    }
+    .form-check-label {
+        font-size: 1.125rem;
+    }
+}
+
+/* ===========================
+   PRINT STYLES
+   =========================== */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #preTicket,
+    #preTicket * {
+        visibility: visible;
+    }
+    #preTicket {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #0a0a0a;
+        color: #ffffff;
+        font-size: 12pt;
+    }
+}
+
+/* ===========================
+   TICKET CONTAINER
+   =========================== */
+#preTicket {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    overflow-x: auto;
+    max-width: 100%;
+    overflow-y: visible;
+}
+#preTicket h4 {
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffff;
+    font-size: 1.5rem;
+}
+#preTicket table {
+    background-color: #1e1e1e;
+    width: 100%;
+    table-layout: fixed;
+    font-size: 1.125rem;
+}
+#preTicket th,
+#preTicket td {
+    border: 1px solid #00ffff;
+    color: #ffffff;
+    padding: 6px;
+    word-wrap: break-word;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#preTicket th:nth-child(1) {
+    width: 10%;
+}
+#preTicket th:nth-child(2),
+#preTicket th:nth-child(4),
+#preTicket th:nth-child(5),
+#preTicket th:nth-child(6),
+#preTicket th:nth-child(7) {
+    width: 12%;
+}
+#preTicket th:nth-child(3) {
+    width: 20%;
+}
+#preTicket td {
+    font-size: 0.9rem;
+    padding: 6px;
+}
+.duplicado {
+    background-color: #ffff99;
+    border: 2px solid #ffeb3b;
+}
+.error-field {
+    background-color: var(--color-neon-morado) !important;
+    border: 2px solid var(--color-neon-cian) !important;
+}
+/* Hide cutoff time for Venezuela track */
+.cutoff-time[data-track='Venezuela'] {
+    color: var(--color-fondo);
+}
+
+/* For smaller screens */
+@media (max-width: 600px) {
+    #preTicket table,
+    #preTicket th,
+    #preTicket td {
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+    #preTicket {
+        padding: 10px;
+        overflow-x: auto;
+    }
+    #qrcode {
+        width: 100px;
+        height: 100px;
+    }
+    #preTicket th,
+    #preTicket td {
+        font-size: 0.8rem;
+    }
+}
+
+/* Force wide "desktop" look on small screens: optional approach */
+@media (max-width: 768px) {
+    #preTicket {
+        width: 1200px !important;
+        max-width: none !important;
+        margin: 0 auto !important;
+        overflow-x: auto !important;
+    }
+    #preTicket table {
+        min-width: 1200px !important;
+        table-layout: fixed !important;
+        white-space: nowrap !important;
+    }
+    #preTicket th,
+    #preTicket td {
+        font-size: 1rem !important;
+        text-overflow: ellipsis;
+    }
+}
+
+/* ===========================
+   Fix for Bet Dates color
+   =========================== */
+#ticketFecha {
+    color: #ffffff !important;
+}
